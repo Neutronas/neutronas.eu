@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuTronas.eu</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: #ccc;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-icon-wrapper {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.05;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  color: #ccc;
+}
+
+.title {
+  margin-top: 40px;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 4px;
+  display: flex;
+  gap: 5px;
+  z-index: 2;
+  color: white;
+}
+.title span { display: inline-block; transition: transform 0.3s, color 0.3s, text-shadow 0.3s; cursor: pointer; }
+.title span:hover { transform: scale(1.3) rotate(-5deg); }
+.title span:nth-child(1):hover { color:#ff4500;text-shadow:0 0 15px #ff4500; }
+.title span:nth-child(2):hover { color:#1e90ff;text-shadow:0 0 15px #1e90ff; }
+.title span:nth-child(3):hover { color:#00ced1;text-shadow:0 0 15px #00ced1; }
+.title span:nth-child(4):hover { color:#32cd32;text-shadow:0 0 15px #32cd32; }
+.title span:nth-child(5):hover { color:#f0e68c;text-shadow:0 0 15px #f0e68c; }
+.title span:nth-child(6):hover { color:#ff69b4;text-shadow:0 0 15px #ff69b4; }
+.title span:nth-child(7):hover { color:#ff1493;text-shadow:0 0 15px #ff1493; }
+.title span:nth-child(8):hover { color:#00ff7f;text-shadow:0 0 15px #00ff7f; }
+.title span:nth-child(9):hover { color:#ffa500;text-shadow:0 0 15px #ffa500; }
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+  width:90%;
+  max-width:1000px;
+  margin-top:50px;
+  z-index:2;
+}
+
+.card {
+  background: rgba(30,30,30,0.8);
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px);
+  color: #aaa;
+  text-decoration: none;
+}
+.card:hover {
+  transform: translateY(-10px) rotateX(10deg);
+  box-shadow:0 15px 40px rgba(0,200,255,0.4);
+  color:#fff;
+}
+.card i { 
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #aaa; 
+  transition: color 0.3s ease; 
+}
+.card:hover i { color:#00e5ff; }
+
+h2 { margin:0; font-size:1.2rem; }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="background" id="background"></div>
+
+<div class="title">
+  <span>N</span><span>e</span><span>u</span><span>T</span><span>r</span><span>o</span><span>n</span><span>a</span><span>s</span>
+</div>
+
+<div class="container">
+  <a class="card" href="https://steamcommunity.com/id/NeuTronas" target="">
+    <i class="fab fa-steam"></i>
+    <h2>Steam</h2>
+  </a>
+  <a class="card" href="https://discord.com/users/129353359126691851" target="">
+    <i class="fab fa-discord"></i>
+    <h2>Discord</h2>
+  </a>
+  <a class="card" href="https://youtube.com/@neutronas" target="">
+    <i class="fab fa-youtube"></i>
+    <h2>YouTube</h2>
+  </a>
+  <a class="card" href="https://twitch.tv/neutronas" target="">
+    <i class="fab fa-twitch"></i>
+    <h2>Twitch</h2>
+  </a>
+  <a class="card" href="https://github.com/neutronas" target="">
+    <i class="fab fa-github"></i>
+    <h2>GitHub</h2>
+  </a>
+  <a class="card" href="https://mail.google.com/mail/?view=cm&fs=1&to=nequadora@gmail.com" target="">
+    <i class="fas fa-envelope"></i>
+    <h2>Email</h2>
+  </a>
+</div>
+
+<script>
+const iconNames = ["fa-steam","fa-discord","fa-youtube","fa-twitch","fa-github","fa-envelope"];
+const background = document.getElementById("background");
+const icons = [];
+const iconCount = 20;
+
+let mouseX = 0, mouseY = 0;
+window.addEventListener("mousemove", e => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 0.3;
+  mouseY = (e.clientY / window.innerHeight - 0.5) * 0.3;
+});
+
+// Create wrappers
+for(let i=0;i<iconCount;i++){
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("bg-icon-wrapper");
+  wrapper.style.left = Math.random()*window.innerWidth + "px";
+  wrapper.style.top = Math.random()*window.innerHeight + "px";
+  
+  // Assign random base speed for each icon
+  wrapper.dataset.vx = (Math.random()-0.5)*0.2;
+  wrapper.dataset.vy = (Math.random()-0.5)*0.2;
+  wrapper.dataset.angle = Math.random()*360;
+  wrapper.dataset.dangle = (Math.random()-0.5)*0.2;
+  wrapper.dataset.opacity = 0.05 + Math.random()*0.05;
+
+  const icon = document.createElement("i");
+  const randomIcon = iconNames[Math.floor(Math.random()*iconNames.length)];
+  
+  // Add appropriate class prefix based on icon type
+  if (randomIcon === "fa-envelope") {
+    icon.className = "fas " + randomIcon;
+  } else {
+    icon.className = "fab " + randomIcon;
+  }
+  
+  wrapper.appendChild(icon);
+  background.appendChild(wrapper);
+  icons.push(wrapper);
+}
+
+function animate(){
+  icons.forEach(icon=>{
+    // Add subtle mouse influence
+    let vx = parseFloat(icon.dataset.vx) + mouseX*0.02;
+    let vy = parseFloat(icon.dataset.vy) + mouseY*0.02;
+    let x = parseFloat(icon.style.left);
+    let y = parseFloat(icon.style.top);
+    x += vx;
+    y += vy;
+
+    if(x < -60) x = window.innerWidth;
+    if(x > window.innerWidth) x = -60;
+    if(y < -60) y = window.innerHeight;
+    if(y > window.innerHeight) y = -60;
+
+    let angle = parseFloat(icon.dataset.angle) + parseFloat(icon.dataset.dangle);
+    icon.dataset.angle = angle;
+
+    icon.style.left = x + "px";
+    icon.style.top = y + "px";
+    icon.style.transform = `rotate(${angle}deg)`;
+    icon.style.opacity = parseFloat(icon.dataset.opacity);
+
+    icon.dataset.vx = vx*0.98;
+    icon.dataset.vy = vy*0.98;
+  });
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>
