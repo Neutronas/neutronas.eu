@@ -364,7 +364,7 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: var(--pos, center);
   filter: grayscale(0.7) brightness(0.62) contrast(1.05);
   transform: scale(1.02);
   transition: filter 0.6s var(--ease), transform 0.9s var(--ease);
@@ -484,15 +484,15 @@ footer {
   <section class="community" aria-labelledby="community-h">
     <h2 id="community-h">Community projects</h2>
     <p class="lead">I build community gap closers: tools that bring streams and their communities together.</p>
-    <p class="note">The three shows below were built for Borisas2K20 to run TV-style shows with his viewers.</p>
+    <p class="note">The four tools below were built for Borisas2K20 to run his TV-style shows and finish his videos.</p>
     <div class="chips" aria-label="Borisas2K20 links">
       <a class="chip" href="https://b2k20.lt" target="_blank" rel="noopener" style="--brand:#00e5ff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg><span>b2k20.lt</span></a>
       <a class="chip" href="https://www.youtube.com/@borisas2k209" target="_blank" rel="noopener" style="--brand:#ff3d3d"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YouTube</span></a>
       <a class="chip" href="https://www.twitch.tv/borisas2k20" target="_blank" rel="noopener" style="--brand:#9146ff"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg><span>Twitch</span></a>
     </div>
 
-    <h3 class="group">Streamer tools</h3>
-    <div class="links projects" aria-label="Streamer tools">
+    <h3 class="group">Tools built for Borisas2K20</h3>
+    <div class="links projects" aria-label="Tools built for Borisas2K20">
     <div class="card proj" style="--brand:#c9a24f; --i:6">
       <span class="card-bg"><span class="shot"><img src="img/mafia.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
       <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="2.5"/><circle cx="16" cy="10" r="2"/><path d="M4 20c0-3 2.2-5 5-5s5 2 5 5M14 20c0-2.2 1.6-4 3.5-4s3.5 1.8 3.5 4"/></svg></span>
@@ -501,7 +501,7 @@ footer {
     </div>
 
     <div class="card proj" style="--brand:#ffd43b; --i:7">
-      <span class="card-bg"><span class="shot"><img src="img/pricer.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+      <span class="card-bg"><span class="shot" style="--pos:50% 30%"><img src="img/pricer.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
       <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg></span>
       <span class="meta"><span class="name">Kiek Kainuoja?</span><span class="tag en">in English: Guess the price</span><span class="desc">Two-team price-guessing show: the host runs it, captains guess, the stream shows who gets closer.</span><span class="tag">built for Borisas2K20</span></span>
       
@@ -514,7 +514,13 @@ footer {
       
     </div>
 
-    <div class="card proj" style="--brand:#00e5ff; --i:9">
+    <div class="card proj" style="--brand:#ff5a1f; --i:9">
+      <span class="card-bg"><span class="shot"><img src="img/outro.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 10h8M9 14h6"/></svg></span>
+      <span class="meta"><span class="name">Outro</span><span class="desc">Credits-roll maker: type the cast, pick the look, render an MP4 end screen right in the browser.</span><span class="tag">built for Borisas2K20</span></span>
+    </div>
+
+    <div class="card proj" style="--brand:#00e5ff; --i:10">
       <span class="card-bg"><span class="shot logo"><svg viewBox="0 0 136 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 10h60a6 6 0 0 1 6 6v30a6 6 0 0 1-6 6H44L28 66V52H14a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6z"/><path d="M24 31h4M34 24v14M44 20v22M54 26v10M64 30h4"/><path d="M92 26q8 10 0 20M102 18q14 18 0 36M112 12q20 26 0 52" opacity=".7"/></svg></span><span class="glare"></span></span>
       <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v10H10l-4 4v-4H4z"/><path d="M8 10v2M12 9v4M16 10v2"/></svg></span>
       <span class="meta"><span class="name">Chat, read aloud</span><span class="desc">Reads YouTube live comments out loud for streamers with a visual disability who can&rsquo;t read the chat themselves.</span></span>
@@ -524,15 +530,15 @@ footer {
 
     <h3 class="group">Multiplayer games</h3>
     <div class="links projects" aria-label="Multiplayer games">
-    <a class="card proj" href="https://burnmarkgame.com" target="_blank" rel="noopener" style="--brand:#e8b923; --i:10">
-      <span class="card-bg"><span class="shot"><img src="img/burnmark.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+    <a class="card proj" href="https://burnmarkgame.com" target="_blank" rel="noopener" style="--brand:#e8b923; --i:11">
+      <span class="card-bg"><span class="shot" style="--pos:50% 45%"><img src="img/burnmark.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
       <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
       <span class="meta"><span class="name">Burnmark</span><span class="desc">Two-player voice-only escape thriller. One of you is trapped, one is wired in. About 90 minutes, no chat.</span><span class="tag">burnmarkgame.com</span></span>
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
     </a>
 
-    <a class="card proj" href="https://strategy.ruzauskas.lt" target="_blank" rel="noopener" style="--brand:#4aa9a8; --i:11">
-      <span class="card-bg"><span class="shot"><img src="img/tronfight.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+    <a class="card proj" href="https://strategy.ruzauskas.lt" target="_blank" rel="noopener" style="--brand:#4aa9a8; --i:12">
+      <span class="card-bg"><span class="shot" style="--pos:50% 40%"><img src="img/tronfight.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
       <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 1-9 9-4-4 9-9zM5 15l4 4M3 21l3-3"/></svg></span>
       <span class="meta"><span class="name">Tronfight</span><span class="desc">Real-time strategy in the browser. Host a game, share the code, fight it out.</span><span class="tag">strategy.ruzauskas.lt</span></span>
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
