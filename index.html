@@ -277,11 +277,7 @@ footer {
 }
 
 /* ---------- community projects ---------- */
-.community {
-  margin-top: clamp(56px, 9vh, 88px);
-  opacity: 0;
-  animation: fade 1s var(--ease) 1.3s forwards;
-}
+.community { margin-top: clamp(56px, 9vh, 88px); }
 .community h2 {
   font: 500 12px/1 var(--mono);
   letter-spacing: 0.14em;
@@ -289,52 +285,86 @@ footer {
   color: var(--muted);
   margin: 0 0 22px;
 }
-.community .lead {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  max-width: 62ch;
-  margin: 0 0 8px;
-}
-.community p { margin: 0; color: var(--muted); line-height: 1.6; max-width: 62ch; }
-.community a {
+.community .lead { font-size: 1.05rem; line-height: 1.6; max-width: 62ch; margin: 0 0 8px; }
+.community .note { margin: 0; color: var(--muted); line-height: 1.6; max-width: 62ch; }
+.community .note a {
   color: var(--text);
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  transition: border-color 0.3s, color 0.3s;
+  transition: border-color 0.3s;
 }
-.community a:hover,
-.community a:focus-visible { color: #fff; border-color: var(--accent, #00e5ff); }
-.shows {
-  list-style: none;
-  padding: 0;
-  margin: 18px 0 14px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.community .note a:hover,
+.community .note a:focus-visible { border-color: var(--accent); }
+.group {
+  margin: 40px 0 14px;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5b6272;
 }
-.shows li {
-  font: 500 13px/1 var(--mono);
-  padding: 9px 13px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
+.links.projects { margin-top: 0; grid-template-columns: minmax(0, 1fr); }
+
+.proj { min-height: 168px; gap: 28px; }
+.proj .meta { max-width: 44%; }
+.proj .desc {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--muted);
 }
-.band { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
-.band h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
-.games { list-style: none; padding: 0; margin: 14px 0 0; }
-.games li {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
+.proj .tag {
+  display: block;
+  margin-top: 10px;
+  font: 400 11px/1.3 var(--mono);
+  letter-spacing: 0.06em;
+  color: color-mix(in srgb, var(--brand) 75%, #8a92a3);
 }
-.games li:last-child { border-bottom: 1px solid var(--line); }
-.games a { font-weight: 700; flex: none; min-width: 9ch; }
-.games span { color: var(--muted); font-size: 0.95rem; }
-@media (max-width: 480px) {
-  .games li { flex-direction: column; gap: 2px; }
+.proj .tag.en { margin-top: 3px; color: #8a92a3; }
+.proj .arrow { top: 22px; right: 22px; z-index: 1; }
+
+/* screenshot overlay: fades in from the right, tinted, wakes up on hover */
+.shot {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 62%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 62%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 62%);
+  pointer-events: none;
 }
+.shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.7) brightness(0.62) contrast(1.05);
+  transform: scale(1.02);
+  transition: filter 0.6s var(--ease), transform 0.9s var(--ease);
+}
+.shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, color-mix(in srgb, var(--brand) 22%, transparent), transparent 70%);
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+  transition: opacity 0.6s;
+}
+.card:hover .shot img,
+.card:focus-visible .shot img { filter: grayscale(0) brightness(0.95) contrast(1.05); transform: scale(1.07); }
+.card:hover .shot::after { opacity: 0.35; }
+.shot.logo { display: grid; place-items: center; }
+.shot.logo svg {
+  width: 62%;
+  max-width: 230px;
+  height: auto;
+  color: var(--brand);
+  opacity: 0.5;
+  transition: opacity 0.5s, transform 0.7s var(--ease);
+}
+.card:hover .shot.logo svg { opacity: 0.95; transform: scale(1.06); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 760px) {
@@ -355,6 +385,10 @@ footer {
   .name { font-size: 1.1rem; }
   .arrow { position: static; margin-left: auto; flex: none; }
   footer { flex-direction: column; align-items: center; }
+  .proj { flex-direction: column; align-items: stretch; min-height: 150px; padding: 18px; gap: 18px; }
+  .proj .meta { max-width: none; }
+  .proj .arrow { position: absolute; margin-left: 0; }
+  .shot { width: 100%; opacity: 0.3; -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 100%); mask-image: linear-gradient(to top, transparent 0%, #000 100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -423,32 +457,58 @@ footer {
 
   <section class="community" aria-labelledby="community-h">
     <h2 id="community-h">Community projects</h2>
-
     <p class="lead">I build community gap closers: tools that bring streams and their communities together.</p>
-    <ul class="shows" aria-label="TV-show tools">
-      <li>Mafia</li>
-      <li>Kiek Kainuoja?</li>
-      <li>Millionaire</li>
-    </ul>
-    <p>
-      Built for <a href="https://b2k20.lt" target="_blank" rel="noopener">Borisas2K20</a>
-      to run his TV-style shows with his viewers &mdash;
-      <a href="https://www.youtube.com/@borisas2k209" target="_blank" rel="noopener">YouTube</a>,
-      <a href="https://www.twitch.tv/borisas2k20" target="_blank" rel="noopener">Twitch</a>,
-      <a href="https://b2k20.lt" target="_blank" rel="noopener">b2k20.lt</a>.
-    </p>
+    <p class="note">The three shows below were built for <a href="https://b2k20.lt" target="_blank" rel="noopener">Borisas2K20</a> to run TV-style shows with his viewers &mdash; find him on
+      <a href="https://b2k20.lt" target="_blank" rel="noopener">b2k20.lt</a>,
+      <a href="https://www.youtube.com/@borisas2k209" target="_blank" rel="noopener">YouTube</a> and
+      <a href="https://www.twitch.tv/borisas2k20" target="_blank" rel="noopener">Twitch</a>.</p>
 
-    <div class="band">
-      <h3>Live chat, read aloud</h3>
-      <p>An app that reads YouTube live comments out loud for streamers with a visual disability who can&rsquo;t read the chat themselves.</p>
+    <h3 class="group">Streamer tools</h3>
+    <div class="links projects" aria-label="Streamer tools">
+    <div class="card proj" style="--brand:#c9a24f; --i:6">
+      <span class="card-bg"><span class="shot"><img src="img/mafia.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="2.5"/><circle cx="16" cy="10" r="2"/><path d="M4 20c0-3 2.2-5 5-5s5 2 5 5M14 20c0-2.2 1.6-4 3.5-4s3.5 1.8 3.5 4"/></svg></span>
+      <span class="meta"><span class="name">Mafia</span><span class="desc">Eleven players, one host, a city where nobody can be trusted. Everyone&rsquo;s camera on one screen, with night, day and voting run for you.</span><span class="tag">built for Borisas2K20</span></span>
+      
     </div>
 
-    <div class="band">
-      <h3>Multiplayer games</h3>
-      <ul class="games">
-        <li><a href="https://burnmarkgame.com" target="_blank" rel="noopener">Burnmark</a><span>Co-op escape game for two, voice-only puzzles.</span></li>
-        <li><a href="https://strategy.ruzauskas.lt" target="_blank" rel="noopener">Tronfight</a><span>Real-time strategy in the browser.</span></li>
-      </ul>
+    <div class="card proj" style="--brand:#ffd43b; --i:7">
+      <span class="card-bg"><span class="shot"><img src="img/pricer.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg></span>
+      <span class="meta"><span class="name">Kiek Kainuoja?</span><span class="tag en">in English: Guess the price</span><span class="desc">Two-team price-guessing show: the host runs it, captains guess, the stream shows who gets closer.</span><span class="tag">built for Borisas2K20</span></span>
+      
+    </div>
+
+    <div class="card proj" style="--brand:#f2b830; --i:8">
+      <span class="card-bg"><span class="shot"><img src="img/millionaire.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 6a3 3 0 0 0-3 3 3 3 0 0 0 1 5 3 3 0 0 0 4 4M17 6a3 3 0 0 1 3 3 3 3 0 0 1-1 5 3 3 0 0 1-4 4"/></svg></span>
+      <span class="meta"><span class="name">Millionaire</span><span class="desc">&ldquo;IŠMANIAAUSIS&rdquo; &mdash; a who-wants-to-be-a-millionaire style quiz where the host asks and the streamer answers.</span><span class="tag">built for Borisas2K20</span></span>
+      
+    </div>
+
+    <div class="card proj" style="--brand:#00e5ff; --i:9">
+      <span class="card-bg"><span class="shot logo"><svg viewBox="0 0 136 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 10h60a6 6 0 0 1 6 6v30a6 6 0 0 1-6 6H44L28 66V52H14a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6z"/><path d="M24 31h4M34 24v14M44 20v22M54 26v10M64 30h4"/><path d="M92 26q8 10 0 20M102 18q14 18 0 36M112 12q20 26 0 52" opacity=".7"/></svg></span><span class="glare"></span></span>
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v10H10l-4 4v-4H4z"/><path d="M8 10v2M12 9v4M16 10v2"/></svg></span>
+      <span class="meta"><span class="name">Chat, read aloud</span><span class="desc">Reads YouTube live comments out loud for streamers with a visual disability who can&rsquo;t read the chat themselves.</span></span>
+      
+    </div>
+    </div>
+
+    <h3 class="group">Multiplayer games</h3>
+    <div class="links projects" aria-label="Multiplayer games">
+    <a class="card proj" href="https://burnmarkgame.com" target="_blank" rel="noopener" style="--brand:#e8b923; --i:10">
+      <span class="card-bg"><span class="shot"><img src="img/burnmark.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+      <span class="meta"><span class="name">Burnmark</span><span class="desc">Two-player voice-only escape thriller. One of you is trapped, one is wired in. About 90 minutes, no chat.</span><span class="tag">burnmarkgame.com</span></span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+
+    <a class="card proj" href="https://strategy.ruzauskas.lt" target="_blank" rel="noopener" style="--brand:#4aa9a8; --i:11">
+      <span class="card-bg"><span class="shot"><img src="img/tronfight.webp" alt="" loading="lazy" decoding="async"></span><span class="glare"></span></span>
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 1-9 9-4-4 9-9zM5 15l4 4M3 21l3-3"/></svg></span>
+      <span class="meta"><span class="name">Tronfight</span><span class="desc">Real-time strategy in the browser. Host a game, share the code, fight it out.</span><span class="tag">strategy.ruzauskas.lt</span></span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
     </div>
   </section>
 
@@ -477,7 +537,7 @@ footer {
   const h1 = document.querySelector("h1");
   const layers = [...document.querySelectorAll("[data-depth]")].map(el => ({ el, d: +el.dataset.depth }));
   const cards = [...document.querySelectorAll(".card")].map(el => ({ el }));
-  const grid = document.querySelector(".links");
+  const grids = document.querySelectorAll(".links");
 
   let w = 0, h = 0, dpr = 1, coreY = 0, R = 200;
   let stars = [], sphere = null;
@@ -523,13 +583,13 @@ footer {
   }
 
   /* ---------- cards: shared border light ---------- */
-  grid.addEventListener("pointermove", e => {
+  grids.forEach(grid => grid.addEventListener("pointermove", e => {
     for (const c of cards) {
       const r = c.el.getBoundingClientRect();
       c.el.style.setProperty("--mx", (e.clientX - r.left) + "px");
       c.el.style.setProperty("--my", (e.clientY - r.top) + "px");
     }
-  });
+  }));
 
   cards.forEach(c => {
     c.el.addEventListener("pointerenter", () => {
