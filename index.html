@@ -276,6 +276,66 @@ footer {
   color: #5b6272;
 }
 
+/* ---------- community projects ---------- */
+.community {
+  margin-top: clamp(56px, 9vh, 88px);
+  opacity: 0;
+  animation: fade 1s var(--ease) 1.3s forwards;
+}
+.community h2 {
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 22px;
+}
+.community .lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 62ch;
+  margin: 0 0 8px;
+}
+.community p { margin: 0; color: var(--muted); line-height: 1.6; max-width: 62ch; }
+.community a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  transition: border-color 0.3s, color 0.3s;
+}
+.community a:hover,
+.community a:focus-visible { color: #fff; border-color: var(--accent, #00e5ff); }
+.shows {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.shows li {
+  font: 500 13px/1 var(--mono);
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.band { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
+.band h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
+.games { list-style: none; padding: 0; margin: 14px 0 0; }
+.games li {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.games li:last-child { border-bottom: 1px solid var(--line); }
+.games a { font-weight: 700; flex: none; min-width: 9ch; }
+.games span { color: var(--muted); font-size: 0.95rem; }
+@media (max-width: 480px) {
+  .games li { flex-direction: column; gap: 2px; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 760px) {
   .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -360,6 +420,37 @@ footer {
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
     </a>
   </nav>
+
+  <section class="community" aria-labelledby="community-h">
+    <h2 id="community-h">Community projects</h2>
+
+    <p class="lead">I build community gap closers: tools that bring streams and their communities together.</p>
+    <ul class="shows" aria-label="TV-show tools">
+      <li>Mafia</li>
+      <li>Kiek Kainuoja?</li>
+      <li>Millionaire</li>
+    </ul>
+    <p>
+      Built for <a href="https://b2k20.lt" target="_blank" rel="noopener">Borisas2K20</a>
+      to run his TV-style shows with his viewers &mdash;
+      <a href="https://www.youtube.com/@borisas2k209" target="_blank" rel="noopener">YouTube</a>,
+      <a href="https://www.twitch.tv/borisas2k20" target="_blank" rel="noopener">Twitch</a>,
+      <a href="https://b2k20.lt" target="_blank" rel="noopener">b2k20.lt</a>.
+    </p>
+
+    <div class="band">
+      <h3>Live chat, read aloud</h3>
+      <p>An app that reads YouTube live comments out loud for streamers with a visual disability who can&rsquo;t read the chat themselves.</p>
+    </div>
+
+    <div class="band">
+      <h3>Multiplayer games</h3>
+      <ul class="games">
+        <li><a href="https://burnmarkgame.com" target="_blank" rel="noopener">Burnmark</a><span>Co-op escape game for two, voice-only puzzles.</span></li>
+        <li><a href="https://strategy.ruzauskas.lt" target="_blank" rel="noopener">Tronfight</a><span>Real-time strategy in the browser.</span></li>
+      </ul>
+    </div>
+  </section>
 
   <footer>
     <span>© <span id="year">2026</span> NeuTronas</span>
